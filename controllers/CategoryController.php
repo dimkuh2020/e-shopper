@@ -3,6 +3,7 @@
 
  use app\models\Category;
  use app\models\Product;
+ use yii\data\Pagination;
  
  use Yii;
 
@@ -18,11 +19,17 @@
 
     public function actionView($id){ //для получения всех товаров по категориям при клике на категории
         $id = Yii::$app->request->get('id');
-        $products = Product::find()->where(['category_id' => $id])->all();
+        //$products = Product::find()->where(['category_id' => $id])->all();
+
+        //для пагин
+        $query = Product::find()->where(['category_id' => $id]); 
+        $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 3]);
+        $products = $query->offset($pages->offset)->limit($pages->limit)->all();
+
         $category = Category::findOne($id);
         $this->setMeta('E-SHOPPER | ' . $category->name, $category->keywords, $category->description);
 
-        return $this->render('view', compact('products', 'category'));
+        return $this->render('view', compact('products', 'pages', 'category'));
 
     }
 

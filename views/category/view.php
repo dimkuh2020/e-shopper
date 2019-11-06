@@ -90,16 +90,17 @@ use yii\helpers\Html; // подкл хелпер для картинок и т.�
 							<div class="clearfix"></div> <!--переход вниз-->
 						<?php endif;?>
                         <?php endforeach;?>
+						<div class="clearfix"></div> <!--переход вниз-->
+						<?php echo yii\widgets\LinkPager::widget(['pagination' => $pages]);?>
 <?php else :?>	
     <h2>Здесь товаров пока нет.....</h2>
-<?php endif;?>			
-						<div class="clearfix"></div> <!--переход вниз-->	
-						<ul class="pagination">
+<?php endif;?>									
+						<!--<ul class="pagination">
 							<li class="active"><a href="">1</a></li>
 							<li><a href="">2</a></li>
 							<li><a href="">3</a></li>
 							<li><a href="">&raquo;</a></li>
-						</ul>
+						</ul>-->
 					</div><!--features_items-->
 				</div>
 			</div>
