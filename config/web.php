@@ -52,6 +52,7 @@ $config = [
             'rules' => [
                 'category/<id:\d+>/page/<page:\d+>' => 'category/view', //ЧПУ для пагинации (ставим перед правилом для категорий)
                 'category/<id:\d+>' => 'category/view', // Показ цифру id после категории
+                'product/<id:\d+>' => 'product/view', 
 
             ],
         ],        
