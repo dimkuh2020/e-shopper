@@ -94,7 +94,7 @@ use yii\helpers\Html; // подкл хелпер для картинок и т.�
 								<p>Web ID: 1089772</p>
 								<img src="/images/product-details/rating.png" alt="" />
 								<span>
-									<span>US $<?php $product->price?></span>
+									<span>US $<?= $product->price?></span>
 									<label>Quantity:</label>
 									<input type="text" value="3" />
 									<button type="button" class="btn btn-fefault cart">
@@ -104,13 +104,13 @@ use yii\helpers\Html; // подкл хелпер для картинок и т.�
 								</span>
 								<p><b>Availability:</b> In Stock</p>
 								<p><b>Condition:</b> New</p>
-								<p><b>Brand:</b><a href="<?=yii\helpers\Url::to(['category/view', 'id' => $product->category->id])?>"> <?=$product->cateory->name?></a></p>
+								<p><b>Brand:</b><a href="<?=yii\helpers\Url::to(['category/view', 'id' => $product->category->id])?>"> <?=$product->category->name?></a></p>
 								<a href=""><img src="/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
 							</div><!--/product-information-->
 						</div>
 					</div><!--/product-details-->
 					
-					<div class="category-tab shop-details-tab"><!--category-tab-->
+					<!--<div class="category-tab shop-details-tab">>
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
 								<li><a href="#details" data-toggle="tab">Details</a></li>
@@ -298,89 +298,35 @@ use yii\helpers\Html; // подкл хелпер для картинок и т.�
 							</div>
 							
 						</div>
-					</div><!--/category-tab-->
+					</div>--><!--/category-tab-->
 					
 					<div class="recommended_items"><!--recommended_items-->
 						<h2 class="title text-center">recommended items</h2>
 						
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
-								<div class="item active">	
+<?php $count = count($hits); $i = 0; foreach($hits as $hit):?>
+								<?php if($i%3 == 0):?>
+									<div class="item <?php if($i == 0) echo 'active'?>">
+								<?php endif;?>	
 									<div class="col-sm-4">
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="/images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
+													<?=Html::img("@web/images/products/{$hit->img}", ['alt' => $hit->name])?>
+													<h2>$<?=$hit->price?></h2>
+													<p><a href="<?=yii\helpers\Url::to(['product/view', 'id' => $hit->id])?>"><?=$hit->name?></a></p>
 													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
 												</div>
 											</div>
 										</div>
 									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="/images/home/recommend2.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
+								<?php $i++;?>	
+								<?php if($i%3 == 0 || $i == $count):?>									
 									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="/images/home/recommend3.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="item">	
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="/images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="/images/home/recommend2.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="/images/home/recommend3.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+								<?php endif;?>
+<?php endforeach;?>
+								
 							</div>
 							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
 								<i class="fa fa-angle-left"></i>
