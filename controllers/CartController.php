@@ -39,7 +39,23 @@ class CartController extends AppController{
         $session->open();
         $cart = new Cart();
         $cart->addToCart($product);
+        $this->layout = false;
 
+        //debug($session['cart']);
+        //debug($session['cart.qty']);
+        //debug($session['cart.sum']);
+
+        return $this->render('cart-modal', compact('session'));
+    }
+
+    public function actionClear(){  //очистка корзины в модальном окне
+        $session = Yii::$app->session; // начинаем ссесию через Yii
+        $session->open();
+        $session->remove('cart');
+        $session->remove('cart.qty');
+        $session->remove('cart.sum');
+        $this->layout = false;
+        return $this->render('cart-modal', compact('session'));
     }
 
 

@@ -6,7 +6,19 @@ use yii\db\ActiveRecord;
 class Cart extends ActiveRecord{
 
     public function addToCart($product, $qty = 1){ // колличество $qty по умолчанию 1
-        echo 'Works'; 
+        if(isset($_SESSION['cart'][$product->id])){
+            $_SESSION['cart'][$product->id]['qty'] += $qty;  //присваиваем колличество + 1
+        }else{
+            $_SESSION['cart'][$product->id] = [ //или добавляем данніе в сессию
+                'qty' => $qty,
+                'name' => $product->name,
+                'price' => $product->price,
+                'img' => $product->img
+            ];
+        }
+        $_SESSION['cart.qty'] = isset($_SESSION['cart.qty']) ? $_SESSION['cart.qty'] + $qty : $qty; // общее колличество 
+        $_SESSION['cart.sum'] = isset($_SESSION['cart.sum']) ? $_SESSION['cart.sum'] + $qty * $product->price : $qty * $product->price;// общая сумма
+        
 
     }
 

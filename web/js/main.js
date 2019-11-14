@@ -6,6 +6,25 @@
 		speed: 300
 	});
 
+	function showCart(cart){
+		$('#cart .modal-body').html(cart); //добавляем внутри .modal-body 
+		$('#cart').modal(); // выводим модально
+	}
+
+	function clearCart(){
+		$.ajax({
+			url: 'cart/clear',
+			type: 'GET',
+			success: function(res){
+				if(!res) alert('Ошибка!');
+				showCart(res);	// показ модального окна корзины			
+			},
+			error: function(){
+				alert('Error!!!');
+			}
+		});
+	}
+
 	$('.add-to-cart').on('click', function(e){  // скрипт добавления в корзину товара через ajax
 		e.preventDefault();
 		var id = $(this).data('id'); // получение id товара через арибут data-id="<?=$hits->id?>" в <html>
@@ -15,8 +34,8 @@
 			type: 'GET',
 			success: function(res){
 				if(!res) alert('Ошибка!');
-				console.log(res);
-				//showCart(res);				
+				//console.log(res);
+				showCart(res);	// показ модального окна корзины			
 			},
 			error: function(){
 				alert('Error!!!');
