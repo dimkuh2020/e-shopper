@@ -13,11 +13,11 @@
             <tbody>
             <?php foreach($session['cart'] as $id => $item):?>
                 <tr>
-                    <td><?=$item['img']?></td>
+                    <td><?= \yii\helpers\Html::img("@web/images/products/{$item['img']}", ['alt' => $item['name'], 'height' => 50])?></td>
                     <td><?=$item['name']?></td>
                     <td><?=$item['qty']?></td>
                     <td><?=$item['price']?></td>
-                    <td><span class="glyphicon glyphicon-remove text-danger del-item" aria-hidden="true"></span></td>
+                    <td><span data-id="<?=$id?>" class="glyphicon glyphicon-remove text-danger del-item" aria-hidden="true"></span></td>
                 </tr>
             <?php endforeach;?>
                 <tr>                

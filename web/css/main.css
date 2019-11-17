@@ -801,6 +801,10 @@ ul.category-products{
   position: relative;
 }
 
+.del-item{
+  cursor: pointer;
+}
+
 
 .price-range{
   margin-top:30px;

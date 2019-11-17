@@ -96,16 +96,16 @@ use yii\helpers\Html; // подкл хелпер для картинок и т.�
 								<span>
 									<span>US $<?= $product->price?></span>
 									<label>Quantity:</label>
-									<input type="text" value="3" />
-									<button type="button" class="btn btn-fefault cart">
+									<input type="text" value="1" id="qty" /> <!--добваляем id="qty" для передачи на бекенд-->
+									<a href="<?=\yii\helpers\Url::to(['cart/add', 'id'=> $product->id])?>" data-id="<?=$product->id?>" class="btn btn-fefault add-to-cart cart"> <!--меняем button на a-->
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
-									</button>
+									</a>
 								</span>
 								<p><b>Availability:</b> In Stock</p>
 								<p><b>Condition:</b> New</p>
 								<p><b>Brand:</b><a href="<?=yii\helpers\Url::to(['category/view', 'id' => $product->category->id])?>"> <?=$product->category->name?></a></p>
-								<a href=""><img src="/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+								<a href="#"><img src="/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
 							</div><!--/product-information-->
 						</div>
 					</div><!--/product-details-->
