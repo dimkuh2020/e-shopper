@@ -34,7 +34,15 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false, //false если реальное письмо
+            'transport' => [ // пастройки почты
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com', //@хост
+                'username' => 'dimkuh1985', //логин@
+                'password' => 'password',   //пароль к почте
+                'port' => '993', // порт от гугла
+                'encryption' => 'ssl',
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
