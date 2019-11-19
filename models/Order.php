@@ -4,6 +4,7 @@ namespace app\models;
 
 use \yii\db\ActiveRecord;
 use \yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 use Yii;
 
 /**
@@ -28,6 +29,21 @@ class Order extends ActiveRecord
     public static function tableName()
     {
         return 'order';
+    }
+
+    public function behaviors(){  // метод для автоматического проставления даты при сохранении заказа (Timestamp)
+        return [                  // из www
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'], //перед вставкой записи
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'], //перед обновлением записи
+                ],
+                // если вместо метки времени UNIX используется datetime:
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+
     }
 
     public function getOrderItems(){ //для связи с order_items
