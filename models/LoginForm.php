@@ -35,6 +35,15 @@ class LoginForm extends Model
         ];
     }
 
+    public function attributeLabels(){
+        return [
+            'username' => 'Логин',
+            'password' => 'Пароль',
+            'rememberMe' => 'Запомить',
+
+        ];
+    } 
+
     /**
      * Validates the password.
      * This method serves as the inline validation for password.

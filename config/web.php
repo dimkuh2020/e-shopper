@@ -31,6 +31,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true, // для сохранения cookie
+           // 'loginUrl' => 'cart/view'  // перенаправление неавторизов. пользователя (пример) 
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
