@@ -98,7 +98,7 @@ class CartController extends AppController{
                 Yii::$app->session->setFlash('success', 'Ваш заказ принят.'); // флешка 
                 Yii::$app->mailer->compose('order', ['session' => $session]) // отправка почты (\mail\layout\order.php) + изменения в web.php
                             ->setFrom(['dimkuh1985@gmail.com' => 'e-shopper'])
-                            ->setTo('dimkuh2020@gmail.com')   //  или на админский адрес Yii::$app->params['adminEmail']; (config\params.php)
+                            ->setTo($order->email)   //  или на админский адрес Yii::$app->params['adminEmail']; (config\params.php)
                             ->setSubject('Заказ')
                             ->setTextBody('Бла бла') // не обязательно
                             ->setHtmlBody('<b>текст сообщения в формате HTML</b>') // не обязательно

@@ -9,6 +9,12 @@ $config = [
     'bootstrap' => ['log'],
     'language' => 'ru-RU',
     'defaultRoute' => 'category/index',
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+            'layout' => 'admin',
+        ],
+    ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -24,7 +30,7 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => true, // для сохранения cookie
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -34,7 +40,7 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => false, //false если реальное письмо
+            'useFileTransport' => true, //false если реальное письмо
             'transport' => [ // пастройки почты
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.gmail.com', //@хост
