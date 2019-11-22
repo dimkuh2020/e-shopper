@@ -106,6 +106,8 @@ use yii\helpers\Html; // подкл хелпер для картинок и т.�
 					
 					</div>
 				</div>
+
+				<?php debug(Yii::$app->user->identity)?>
 				
 				<div class="col-sm-9 padding-right">
 <?php if(!empty($hits)):?> <!--если $hits не пустой то выводим товары хиты продаж-->
