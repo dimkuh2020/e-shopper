@@ -11,12 +11,9 @@ $this->title = 'Вход в админку';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?/*=Yii::$app->getSecurity()->generatePasswordHash('qwerty1234');*/?> <!--просто для получения хеша пароля qwerty1234-->
+<?/*=Yii::$app->getSecurity()->generatePasswordHash('111');*/?> <!--просто для получения хеша пароля qwerty1234-->
 <div class="site-login container">
     <h1><?= Html::encode($this->title) ?></h1>
-
-    
-
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
         'layout' => 'horizontal',
