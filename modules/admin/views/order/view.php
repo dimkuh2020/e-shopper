@@ -42,4 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+    <?php $items =$model->orderItems; debug($items);?>
+
 </div>
