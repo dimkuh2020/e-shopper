@@ -123,7 +123,7 @@ class CartController extends AppController{
             $order_items->name = $item['name'];
             $order_items->price = $item['price'];
             $order_items->qty_item = $item['qty'];
-            $order_items->sum_item = $item['qty']*$item['sum'];
+            $order_items->sum_item = $item['qty']*$item['price'];
             $order_items->save(); 
         }
     }

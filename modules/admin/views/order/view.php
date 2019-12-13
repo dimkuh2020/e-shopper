@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td><a href="<?= Url::to(['/product/view', 'id' => $item->product_id])?>"><?= $item['name']?></a></td>
                         <td><?= $item['qty_item']?></td>
                         <td><?= $item['price']?></td>
-                        <td><?= $item['qty_item'] * $item['price']?></td>                       
+                        <td><?= $item['sum_item']?></td>                       
                     </tr>
                 <?php endforeach?>                
                 </tbody>
