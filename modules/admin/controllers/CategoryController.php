@@ -36,7 +36,7 @@ class CategoryController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Category::find(),
+            'query' => Category::find()->with('category'), // Добавляем ленивую загрузку 
         ]);
 
         return $this->render('index', [
