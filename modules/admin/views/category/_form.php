@@ -14,7 +14,15 @@ use yii\widgets\ActiveForm;
 
     <? //echo $form->field($model, 'parent_id')->textInput() ?>
 
-    <?php echo $form->field($model, 'parent_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Category::find()->all(),'id','name'))?>
+    <?php //echo $form->field($model, 'parent_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Category::find()->all(),'id','name'))?>
+
+    <div class="form-group field-category-parent_id"> <!--копируем из консоли вместо верхнего поля-->
+        <label class="control-label" for="category-parent_id">Родительская категори</label>
+        <select id="category-parent_id" class="form-control" name="Category[parent_id]">
+        <option value="0">Самостоятельная категория</option>
+            <?= \app\components\MenuWidget::widget(['tpl' => 'select', 'model' => $model])?> <!--добавляем озешщті через виджет + отключаем кеширование в components/MenuWidget.php-->
+        </select>
+    </div>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
