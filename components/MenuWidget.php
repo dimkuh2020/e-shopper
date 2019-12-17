@@ -11,6 +11,7 @@ class MenuWidget extends Widget{
     public $data; //хранятся все категории в массиве
     public $tree; // хранится результат функции в массив дерева
     public $menuHtml; // хранение хтмл код в $tpl
+    public $model;
 
     public function init(){
         parent::init();
@@ -22,8 +23,10 @@ class MenuWidget extends Widget{
 
     public function run(){
         //get cache
-        $menu = Yii::$app->cache->get('menu'); // кеш для menu.php
-        if($menu) return $menu;
+        if($this->tpl == 'menu.php'){  
+            $menu = Yii::$app->cache->get('menu'); // (1)кеш для menu.php
+            if($menu) return $menu;
+        }        
 
         $this->data = Category::find()->indexBy('id')->asArray()->all(); //в дату всё из категорий
         $this->tree = $this->getTree();
@@ -31,7 +34,9 @@ class MenuWidget extends Widget{
         //debug($this->tree);
 
         //set cache
+        if($this->tpl == 'menu.php'){ // (2)кеш для menu.php
         Yii::$app->cache->set('menu', $this->menuHtml, 60); // время 1 мин
+        }
 
         return $this->menuHtml;
     }
@@ -47,15 +52,15 @@ class MenuWidget extends Widget{
         return $tree;
     }
 
-    protected function getMenuHtml($tree){  //для получения в хтмл
+    protected function getMenuHtml($tree, $tab = ''){  //для получения в хтмл
         $str = '';
         foreach ($tree as $category) {
-            $str .= $this->catToTemplate($category);
+            $str .= $this->catToTemplate($category, $tab);
         }
         return $str;
     }
 
-    protected function catToTemplate($category){  // возвращает буффкризированый вывод в $str
+    protected function catToTemplate($category, $tab){  // возвращает буффкризированый вывод в $str
         ob_start();
         include __DIR__ . '/menu_tpl/' . $this->tpl;
         return ob_get_clean();
