@@ -12,9 +12,17 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
+    
+    <div class="form-group field-category-parent_id"> <!--копируем из консоли вместо верхнего поля-->
+        <label class="control-label" for="product-category_id">Родительская категори</label>
+        <select id="product-category_id" class="form-control" name="Product[category_id]">
+        <option value="0">Самостоятельная категория</option>
+            <?= \app\components\MenuWidget::widget(['tpl' => 'select_product', 'model' => $model])?> <!--добавляем озешщті через виджет + отключаем кеширование в components/MenuWidget.php-->
+        </select>
+    </div>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
