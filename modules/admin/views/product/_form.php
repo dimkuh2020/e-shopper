@@ -9,8 +9,8 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="product-form">
-
-    <?php $form = ActiveForm::begin(); ?>
+    
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?> <!--вставка ['options' => ['enctype' => 'multipart/form-data']] в параметры формы для отпавки картинок-->
 
     
     <div class="form-group field-category-parent_id"> <!--копируем из консоли вместо верхнего поля-->
@@ -32,13 +32,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'image')->fileInput() ?>
 
-    <?= $form->field($model, 'hit')->dropDownList([ '0', '1', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'hit')->checkbox([ '0', '1', ])?>
 
-    <?= $form->field($model, 'new')->dropDownList([ '0', '1', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'new')->checkbox([ '0', '1', ])?>
 
-    <?= $form->field($model, 'sale')->dropDownList([ '0', '1', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'sale')->checkbox([ '0', '1', ])?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

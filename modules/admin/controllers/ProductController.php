@@ -8,6 +8,8 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\UploadForm;
+use yii\web\UploadedFile;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -88,6 +90,15 @@ class ProductController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            
+            $model->image= UploadedFile::getInstance($model, 'image'); //картинку из формы в загрузку
+              if ($model->image) {
+                $model->upload();
+                return;
+            }
+                     
+
+            Yii::$app->session->setFlash('success', "Товар {$model->name} обновлён");
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
